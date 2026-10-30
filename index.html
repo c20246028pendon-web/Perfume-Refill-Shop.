@@ -1,62 +1,168 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUIS | Perfume Refill Shop</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#B77935',
+                        secondary: '#E9C99A',
+                        darkbg: '#171717',
+                        darkcard: '#262626'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* DESIGN SYSTEM */
+        :root {
+            --primary: #B77935;
+            --secondary: #E9C99A;
+            --background: #F9FAFB;
+            --surface: #FFFFFF;
+            --text: #292524;
+            --muted: #6B7280;
+        }
+
+        .dark {
+            --background: #171717;
+            --surface: #262626;
+            --text: #F5F5F4;
+            --muted: #A3A3A3;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .surface {
+            background-color: var(--surface);
+        }
+
+        .primary-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            opacity: 0.85;
+        }
+
+        .design-card {
+            background-color: var(--surface);
+            border: 1px solid rgba(128,128,128,0.15);
+            border-radius: 12px;
+            padding: 28px;
+            transition: 0.3s;
+        }
+
+        .design-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .muted-text {
+            color: var(--muted);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body>
 
     <!-- NAVIGATION -->
-    <nav class="bg-white shadow-md">
+    <nav class="surface shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-amber-700">
+
+            <h1 class="text-2xl font-bold text-primary">
                 LUIS PERFUME
             </h1>
 
-            <div class="hidden md:flex gap-8 font-medium">
-                <a href="#home" class="hover:text-amber-700">Home</a>
-                <a href="#about" class="hover:text-amber-700">About</a>
-                <a href="#services" class="hover:text-amber-700">Services</a>
-                <a href="#contact" class="hover:text-amber-700">Contact</a>
+            <div class="hidden md:flex gap-8 font-medium items-center">
+                <a href="#home" class="hover:text-primary">Home</a>
+                <a href="#about" class="hover:text-primary">About</a>
+                <a href="#services" class="hover:text-primary">Services</a>
+                <a href="#contact" class="hover:text-primary">Contact</a>
+
+                <!-- DARK MODE BUTTON -->
+                <button id="themeToggle"
+                    class="border border-gray-400 rounded-lg px-4 py-2 hover:bg-amber-100 dark:hover:bg-neutral-700"
+                    aria-label="Toggle dark mode">
+                    🌙 Dark
+                </button>
             </div>
 
-            <button class="md:hidden text-2xl" aria-label="Open menu">
-                ☰
-            </button>
+            <!-- MOBILE BUTTONS -->
+            <div class="flex items-center gap-3 md:hidden">
+                <button id="mobileThemeToggle"
+                    class="border border-gray-400 rounded-lg px-3 py-2"
+                    aria-label="Toggle dark mode">
+                    🌙
+                </button>
+
+                <button id="menuToggle" class="text-2xl" aria-label="Open menu">
+                    ☰
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE NAVIGATION -->
+        <div id="mobileMenu" class="hidden md:hidden surface px-6 pb-5">
+            <div class="flex flex-col gap-4 font-medium">
+                <a href="#home" class="hover:text-primary">Home</a>
+                <a href="#about" class="hover:text-primary">About</a>
+                <a href="#services" class="hover:text-primary">Services</a>
+                <a href="#contact" class="hover:text-primary">Contact</a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="home" class="bg-amber-100">
+    <section id="home" class="bg-amber-100 dark:bg-neutral-800">
         <div class="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
                 Discover Your Signature Scent
             </h2>
 
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+            <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-8">
                 Experience affordable and quality fragrances with our
                 premium perfume refill services.
             </p>
 
-            <a href="#services"
-               class="inline-block bg-amber-700 text-white px-8 py-3 rounded-lg hover:bg-amber-800">
+            <a href="#services" class="primary-btn inline-block">
                 Explore Services
             </a>
+
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about" class="max-w-7xl mx-auto px-6 py-16">
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
             <div>
-                <h2 class="text-3xl font-bold mb-5">About Our Shop</h2>
+                <h2 class="text-3xl font-bold mb-5">
+                    About Our Shop
+                </h2>
 
-                <p class="text-gray-600 leading-7">
+                <p class="muted-text leading-7">
                     LUIS Perfume Refill Shop offers affordable fragrances
                     for everyday use and special occasions. We provide
                     quality perfume refills with different scents to
@@ -64,11 +170,12 @@
                 </p>
             </div>
 
-            <div class="bg-amber-100 rounded-xl p-10 text-center">
-                <h3 class="text-2xl font-bold text-amber-800">
+            <div class="bg-amber-100 dark:bg-neutral-800 rounded-xl p-10 text-center">
+                <h3 class="text-2xl font-bold text-amber-800 dark:text-amber-400">
                     Quality Fragrance
                 </h3>
-                <p class="text-gray-600 mt-3">
+
+                <p class="muted-text mt-3">
                     Affordable scents for everyone.
                 </p>
             </div>
@@ -77,7 +184,8 @@
     </section>
 
     <!-- SERVICES SECTION -->
-    <section id="services" class="bg-white py-16">
+    <section id="services" class="surface py-16">
+
         <div class="max-w-7xl mx-auto px-6">
 
             <h2 class="text-3xl font-bold text-center mb-10">
@@ -86,25 +194,34 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <h3 class="text-xl font-bold mb-3">Perfume Refilling</h3>
-                    <p class="text-gray-600">
+                <div class="design-card">
+                    <h3 class="text-xl font-bold mb-3">
+                        Perfume Refilling
+                    </h3>
+
+                    <p class="muted-text">
                         Refill your favorite perfume bottles with
                         quality fragrances.
                     </p>
                 </div>
 
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <h3 class="text-xl font-bold mb-3">Custom Fragrance</h3>
-                    <p class="text-gray-600">
+                <div class="design-card">
+                    <h3 class="text-xl font-bold mb-3">
+                        Custom Fragrance
+                    </h3>
+
+                    <p class="muted-text">
                         Choose a scent that matches your personality
                         and preferences.
                     </p>
                 </div>
 
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <h3 class="text-xl font-bold mb-3">Bottle Cleaning</h3>
-                    <p class="text-gray-600">
+                <div class="design-card">
+                    <h3 class="text-xl font-bold mb-3">
+                        Bottle Cleaning
+                    </h3>
+
+                    <p class="muted-text">
                         Keep your perfume bottles clean and ready
                         for refilling.
                     </p>
@@ -123,37 +240,49 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-amber-100 flex items-center justify-center">
+            <div class="design-card overflow-hidden !p-0">
+                <div class="h-48 bg-amber-100 dark:bg-neutral-800 flex items-center justify-center">
                     <span class="text-6xl">🧴</span>
                 </div>
+
                 <div class="p-6">
-                    <h3 class="text-xl font-bold">Floral Collection</h3>
-                    <p class="text-gray-600 mt-2">
+                    <h3 class="text-xl font-bold">
+                        Floral Collection
+                    </h3>
+
+                    <p class="muted-text mt-2">
                         Fresh and elegant floral fragrances.
                     </p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-amber-100 flex items-center justify-center">
+            <div class="design-card overflow-hidden !p-0">
+                <div class="h-48 bg-amber-100 dark:bg-neutral-800 flex items-center justify-center">
                     <span class="text-6xl">🧴</span>
                 </div>
+
                 <div class="p-6">
-                    <h3 class="text-xl font-bold">Woody Collection</h3>
-                    <p class="text-gray-600 mt-2">
+                    <h3 class="text-xl font-bold">
+                        Woody Collection
+                    </h3>
+
+                    <p class="muted-text mt-2">
                         Warm and sophisticated scents.
                     </p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-amber-100 flex items-center justify-center">
+            <div class="design-card overflow-hidden !p-0">
+                <div class="h-48 bg-amber-100 dark:bg-neutral-800 flex items-center justify-center">
                     <span class="text-6xl">🧴</span>
                 </div>
+
                 <div class="p-6">
-                    <h3 class="text-xl font-bold">Fresh Collection</h3>
-                    <p class="text-gray-600 mt-2">
+                    <h3 class="text-xl font-bold">
+                        Fresh Collection
+                    </h3>
+
+                    <p class="muted-text mt-2">
                         Light and refreshing everyday fragrances.
                     </p>
                 </div>
@@ -163,24 +292,27 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="bg-amber-100 py-16">
+    <section id="contact" class="bg-amber-100 dark:bg-neutral-800 py-16">
+
         <div class="max-w-7xl mx-auto px-6 text-center">
 
-            <h2 class="text-3xl font-bold mb-5">Contact Us</h2>
+            <h2 class="text-3xl font-bold mb-5">
+                Contact Us
+            </h2>
 
-            <p class="text-gray-600 mb-3">
+            <p class="muted-text mb-3">
                 Visit our perfume refill shop for your favorite fragrance.
             </p>
 
-            <p class="text-gray-700">
+            <p class="mb-2">
                 Email: luisperfume@example.com
             </p>
 
-            <p class="text-gray-700">
+            <p class="mb-2">
                 Phone: 09XX-XXX-XXXX
             </p>
 
-            <p class="text-gray-700">
+            <p>
                 Location: Your Shop Address
             </p>
 
@@ -189,8 +321,68 @@
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-6 text-center">
-        <p>&copy; 2026 LUIS Perfume Refill Shop. All Rights Reserved.</p>
+
+        <p>
+            &copy; 2026 LUIS Perfume Refill Shop. All Rights Reserved.
+        </p>
+
     </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // DARK MODE
+        const themeToggle = document.getElementById("themeToggle");
+        const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+
+        function updateThemeButtons() {
+            const isDark = document.documentElement.classList.contains("dark");
+
+            themeToggle.textContent = isDark ? "☀️ Light" : "🌙 Dark";
+            mobileThemeToggle.textContent = isDark ? "☀️" : "🌙";
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle("dark");
+
+            const isDark = document.documentElement.classList.contains("dark");
+
+            localStorage.setItem("luis-theme", isDark ? "dark" : "light");
+
+            updateThemeButtons();
+        }
+
+        // LOAD SAVED THEME
+        if (localStorage.getItem("luis-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+        }
+
+        updateThemeButtons();
+
+        themeToggle.addEventListener("click", toggleTheme);
+        mobileThemeToggle.addEventListener("click", toggleTheme);
+
+
+        // MOBILE MENU
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuToggle.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+
+            menuToggle.textContent =
+                mobileMenu.classList.contains("hidden") ? "☰" : "✕";
+        });
+
+        // CLOSE MOBILE MENU AFTER CLICKING A LINK
+        document.querySelectorAll("#mobileMenu a").forEach(link => {
+            link.addEventListener("click", function () {
+                mobileMenu.classList.add("hidden");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+    </script>
 
 </body>
 </html>
